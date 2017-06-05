@@ -1,0 +1,50 @@
+
+<h4>Registration Form<h4>
+<form (submit)='register(formData)' #formData='ngForm'>
+  <p>Name: <input type="text" name="name" required
+  minlength="2"
+  maxlength="25" [(ngModel)]='user.name' #name='ngModel'></p>
+  <div [hidden]="name.valid || name.pristine">
+    <p>User is required</p>
+  </div>
+  <p>Email: <input type="text" name="email" required
+  minlength="3"
+  maxlength="24"
+  [(ngModel)]='user.email' #email='ngModel'></p>
+  <div [hidden]="email.valid || email.pristine">
+    <p>Please enter a valid email</p>
+  </div>
+  <!-- if we had password valid. li [hidden]='password_conf'==!'password'> -->
+  <p>Password: <input type="text" name="password" required
+  minlength="2"
+  maxlength="25" [(ngModel)]='user.password' #password='ngModel'></p>
+  <div [hidden]="password.valid || password.pristine">
+    <p>Please enter a better password</p>
+  </div>
+  <input [disabled]="!formData.form.valid" type="submit" name="register">
+</form>
+<!-- <div *ngIf="!formData.valid">
+  <p *ngIf="email.errors.email">Problem with email formats</p>
+</div> -->
+<h4>Login Form</h4>
+
+<form (submit)='login(loginData)' #loginData='ngForm'>
+  Email: <input type="text" name="email" ngModel required
+  minlength="10"
+  maxlength="24"
+  pattern="^([a-zA-Z0-9@*#]{8,15})$"><br>
+  Password: <input type="text" name="password" ngModel><br>
+  <input type="submit" name="login" [disabled]="attempts<1">
+</form>
+
+<!-- {{ name.errors | json }}
+{{ name.valid | json }}
+{{ email.errors | json }}
+{{ email.valid | json }}
+{{ password.errors | json }}
+{{ password.valid | json }}
+
+{{user.name}}
+
+{{user.email}}
+{{user.password}} -->
